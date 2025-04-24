@@ -1,5 +1,7 @@
 """MCP server tools for Python."""
 
+import traceback
+
 from mcp.server.fastmcp import Context, FastMCP
 from snake.mcp.server.tools.pytest import run_pytest
 from snake.mcp.server.tools.mypy import run_mypy
@@ -61,7 +63,7 @@ async def pytest(
         return {
             "success": False,
             "data": None,
-            "error": f"Failed to run pytest: {str(e)}"
+            "error": f"Failed to run pytest: {str(e)}\n{traceback.format_exc()}"
         }
 
 
@@ -110,7 +112,7 @@ async def mypy(
         return {
             "success": False,
             "data": None,
-            "error": f"Failed to run mypy: {str(e)}"
+            "error": f"Failed to run mypy: {str(e)}\n{traceback.format_exc()}"
         }
 
 
@@ -149,5 +151,5 @@ async def flake8(
         return {
             "success": False,
             "data": None,
-            "error": f"Failed to run flake8: {str(e)}"
+            "error": f"Failed to run flake8: {str(e)}\n{traceback.format_exc()}"
         }
